@@ -49,12 +49,20 @@ app.post("/api/tables", function(req, res) {
     // Using a RegEx Pattern to remove spaces from newCharacter
     // You can read more about RegEx Patterns later https://www.regexbuddy.com/regex.html
     //newCharacter.routeName = newCharacter.name.replace(/\s+/g, "").toLowerCase();
-  
     console.log(newReservation);
-  
-    tables.push(newReservation);
-  
-    res.json(newReservation);
+    
+    if (tables.length > 5){
+        newReservation.waitlist = true;
+        waitList.push(newReservation)
+        res.status(200).json('Waitlisted')
+    }else{
+        newReservation.waitlist = false;
+        tables.push(newReservation)
+        res.status(200).json('Available reservation')
+    }
+
+    
+   
   });
 
 
