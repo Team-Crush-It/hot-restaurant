@@ -52,7 +52,7 @@ app.post("/api/tables", function(req, res) {
   
     console.log(newReservation);
   
-    reservations.push(newReservation);
+    tables.push(newReservation);
   
     res.json(newReservation);
   });
