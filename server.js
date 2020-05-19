@@ -12,6 +12,18 @@ var PORT = process.env.PORT || 3000;
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
+var tables = [];
+var waitList = [];
+
+var customer = {
+    "customerName": "N/A",
+    "phoneNumber": "N/A",
+    "customerEmail": "N/A",
+    "customerID": "N/A"
+    }
+
+    tables.push(customer);
+
 
 // Routes
 // =============================================================
@@ -27,6 +39,14 @@ app.get("/tables", function(req, res) {
 
 app.get("/reserve", function(req, res) {
     res.sendFile(path.join(__dirname, "reserve.html"));
+});
+
+app.get("/api/tables", function(req, res) {
+  return res.json(tables);
+});
+
+app.get("/api/waitlist", function(req, res) {
+  return res.json(waitList);
 });
 
 // Starts the server to begin listening
